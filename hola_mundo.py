@@ -1,9 +1,9 @@
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__) #Objeto
 
-@app.route('/')
+@app.route('/') #wrap o decorador con la ruta
 def index():
-    return "Hola mundo"
+    return "Hola mundo" #Regresa string
 
-app.run()
+app.run() #Ejecuta el servidor, puerto default: 5000
