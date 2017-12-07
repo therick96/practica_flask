@@ -1,11 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from flask import Flask
 from flask import request
+
+from flask import render_template #Para renderizar template
 
 app = Flask(__name__) #Objeto
 
 @app.route('/') #wrap o decorador con la ruta
 def index():
-    return "Hola mundo" #Regresa string
+    web = "Web de Prueba"
+    #return "Hola mundo" #Regresa string
+    return render_template('index.html', web=web)
 
 @app.route('/p')
 def pagina_2():
