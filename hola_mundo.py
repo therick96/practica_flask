@@ -16,19 +16,19 @@ def index():
 
 @app.route('/about.html')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', web="Nosotros")
 
 @app.route('/blog.html')
 def blog():
-    return render_template('blog.html')
+    return render_template('blog.html', web="Blog")
 
 @app.route('/gallery.html')
 def gallery():
-    return render_template('gallery.html')
+    return render_template('gallery.html', web="Galeria")
 
 @app.route('/contact.html')
 def contact():
-    return render_template('contact.html')
+    return render_template('contact.html', web="Contactenos")
 
 @app.route('/p')
 def pagina_2():
