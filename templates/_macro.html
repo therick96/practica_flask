@@ -1,4 +1,11 @@
 {% macro render_form(campo) %}
     <!--{{ campo.label }}-->
     {{ campo(**kwargs)|safe }}
+
+    {% if campo.errors %}
+        {% for error in campo.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        
+    {% endif %}
 {% endmacro %}

@@ -15,7 +15,7 @@ def index():
 @app.route("/About", methods = ['GET', 'POST'])
 def about():
     form_coment = forms.FormComent(request.form)
-    if request.method == 'POST':
+    if request.method == 'POST' and form_coment.validate():
         print (form_coment.user.data)
     return render_template("generic.html", titulo="About", clase_body='class="subpage"', form=form_coment)
 
