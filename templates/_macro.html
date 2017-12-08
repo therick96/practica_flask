@@ -1,9 +1,4 @@
-{% macro funcion_1(valor) %}
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
-    <li>{{ valor }}</li>
+{% macro render_form(campo) %}
+    <!--{{ campo.label }}-->
+    {{ campo(**kwargs)|safe }}
 {% endmacro %}

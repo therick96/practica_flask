@@ -17,13 +17,37 @@
 					<div class="box">
 						<div class="content">
 							<header class="align-center">
-								<p>maecenas sapien feugiat ex purus</p>
-								<h2>Lorem ipsum dolor</h2>
+								<p>Deja un Comentario</p>
+								<h2>About</h2>
 							</header>
-							<ul>
-								{% from "_macro.html" import funcion_1%}
-									{{ funcion_1(titulo) }}
-							</ul>
+							{% from "_macro.html" import render_form %}
+								<form>
+									<div class="row uniform">
+										<div class="4u 12u$(xsmall)">
+										</div>
+										<div class="4u 12u$(xsmall)" align="center">
+											{{ render_form(form.user, placeholder="Usuario") }}
+											{{ render_form(form.email, placeholder="Email") }}
+										</div>
+										<div class="4u 12u$(xsmall)">
+										</div>
+									</div>
+									<div class="row uniform">
+										<!--Sep-->
+										<div class="3u 12u$(xsmall)">
+										</div>
+										<div class="6u 12u$(xsmall)">
+											{{ render_form(form.comment, placeholder="Comentario")}}
+										</div>
+										<div class="3u 12u$(xsmall)">
+										</div>
+
+										<!--Sep-->
+										<div class="12u$" align="center">
+											<input type="submit" name="enviar" value="Submit" class="alt" />
+										</div>
+									</div>
+								</form>
 						</div>
 					</div>
 				</div>

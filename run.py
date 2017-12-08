@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
-from flask import request
+import forms
 
+from flask import Flask, request
 from flask import render_template #Para renderizar template
+
 
 app = Flask(__name__) #Objeto
 
@@ -13,7 +14,8 @@ def index():
 
 @app.route("/About")
 def about():
-    return render_template("generic.html", titulo="About", clase_body='class="subpage"')
+    form_coment = forms.FormComent()
+    return render_template("generic.html", titulo="About", clase_body='class="subpage"', form=form_coment)
 
 @app.route("/extras")
 def extras():
