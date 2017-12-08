@@ -12,9 +12,11 @@ app = Flask(__name__) #Objeto
 def index():
     return render_template("index.html", titulo="Inicio", clase_header='class="alt"')
 
-@app.route("/About")
+@app.route("/About", methods = ['GET', 'POST'])
 def about():
-    form_coment = forms.FormComent()
+    form_coment = forms.FormComent(request.form)
+    if request.method == 'POST':
+        print (form_coment.user.data)
     return render_template("generic.html", titulo="About", clase_body='class="subpage"', form=form_coment)
 
 @app.route("/extras")
