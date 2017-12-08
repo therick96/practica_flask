@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+{% block menu_extra%}
+    <li><a href="/login">Log In</a></li>
+{% endblock %}
+
+{% block content%}
+	<section id="One" class="wrapper style3">
+		<div class="inner">
+			<header class="align-center">
+				<h2>Sign Up</h2>
+			</header>
+		</div>
+	</section>
+	<section id="two" class="wrapper style2">
+		<div class="inner">
+			<div class="box">
+				<div class="content">
+					<header class="align-center">
+						<!--p>Log In</p-->
+						<h2>Sign Up</h2>
+					</header>
+					<form method="POST" action="#">
+						<div class="row uniform">
+							<div class="4u 12u$(xsmall)">
+							</div>
+							<div class="4u 12u$(xsmall)" align="center">
+								<input type="text" name="usuario" placeholder="User" />
+								<input type="text" name="nombre" placeholder="Nombre / Apellido" />
+								<input type="text" name="correo" placeholder="Email" />
+								<input type="password" name="password" placeholder="Password" />
+								<input type="password" name="password2" placeholder="Confirm Password" />
+							</div>
+							<div class="4u 12u$(xsmall)">
+							</div>
+							<div class="12u$" align="center">
+								<input type="submit" name="enviar" value="Register" class="alt" />
+							</div>
+						</div>
+					</form>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
