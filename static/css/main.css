@@ -1777,7 +1777,7 @@
 	}
 
 	input, select, textarea {
-		color: red;
+		color: #555;
 	}
 
 	a {
@@ -2083,7 +2083,7 @@
 		border-radius: 2px;
 		border: none;
 		border: solid 1px;
-		color: red;
+		color: inherit;
 		display: block;
 		outline: 0;
 		padding: 0 1rem;
