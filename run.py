@@ -9,11 +9,13 @@ from flask import render_template #Para renderizar template
 from flask import flash
 
 sesion = sesion()
-
 app = Flask(__name__) #Objeto
 
 app.secret_key = "Secreto"
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")
 
 @app.route("/")
 def index():
