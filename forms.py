@@ -15,3 +15,29 @@ class FormComent(Form):
         ])
     comment = TextField()
     otro = HiddenField()
+
+class login(Form):
+    user = StringField("Usuario", [
+            validators.required(message="Y el usuario?")
+        ])
+    password = StringField("Password", [
+            validators.required(message="Y el password?")
+        ])
+
+
+class signUp(Form):
+    user = StringField("Usuario", [
+            validators.required(message="Y el usuario?")
+        ])
+    name = StringField("Nombre", [
+            validators.required(message="Y el nombre?")
+        ])
+    email = EmailField("Email", [
+            validators.required(message="Y el email?")
+        ])
+    password = StringField("Password", [
+            validators.required(message="Y el password?")
+        ])
+    password_repetir = StringField("Repetir Password", [
+            validators.required(message="Y la validacion del password?")
+        ])

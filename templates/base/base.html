@@ -24,10 +24,14 @@
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/About">About</a></li>
                     <li><a href="/extras">Elements</a></li>
-                    {% block menu_extra %}
-                        <li><a href="/login">Log In</a></li>
-                        <li><a href="/SignUp">Sign Up</a></li>
-                    {% endblock %}
+                    {% if user %}
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        {% block menu_extra %}
+                            <li><a href="/login">Log In</a></li>
+                            <li><a href="/SignUp">Sign Up</a></li>
+                        {% endblock %}
+                    {% endif %}
                 </ul>
             </nav>
 

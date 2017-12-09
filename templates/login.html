@@ -1,6 +1,8 @@
 {% extends "base/base.html" %}
 
-{% block menu_extra%}{% endblock %}
+{% block menu_extra%}
+	<li><a href="/SignUp">Sign Up</a></li>
+{% endblock %}
 
 {% block content%}
 	<section id="One" class="wrapper style3">
@@ -18,13 +20,14 @@
 						<!--p>Log In</p-->
 						<h2>Log In</h2>
 					</header>
-					<form method="POST" action="#">
+					{% from "_macro.html" import render_login %}
+					<form method="POST">
 						<div class="row uniform">
 							<div class="4u 12u$(xsmall)">
 							</div>
 							<div class="4u 12u$(xsmall)" align="center">
-								<input type="text" name="usuario" placeholder="User" />
-								<input type="password" name="password" placeholder="Password" />
+								{{ render_login(form.user, placeholder="Usuario") }}
+								{{ render_login(form.password, placeholder="Clave") }}
 							</div>
 							<div class="4u 12u$(xsmall)">
 							</div>

@@ -20,24 +20,25 @@
 						<!--p>Log In</p-->
 						<h2>Sign Up</h2>
 					</header>
-					<form method="POST" action="#">
-						<div class="row uniform">
-							<div class="4u 12u$(xsmall)">
+					{% from "_macro.html" import render_signUp %}
+						<form method="POST">
+							<div class="row uniform">
+								<div class="4u 12u$(xsmall)">
+								</div>
+								<div class="4u 12u$(xsmall)" align="center">
+									{{ render_signUp(form.user, placeholder="User") }}
+									{{ render_signUp(form.name, placeholder="Nombre y Apellido") }}
+									{{ render_signUp(form.email, placeholder="Email") }}
+									{{ render_signUp(form.password, placeholder="Password") }}
+									{{ render_signUp(form.password_repetir, placeholder="Confirm Password") }}
+								</div>
+								<div class="4u 12u$(xsmall)">
+								</div>
+								<div class="12u$" align="center">
+									<input type="submit" name="enviar" value="Register" class="alt" />
+								</div>
 							</div>
-							<div class="4u 12u$(xsmall)" align="center">
-								<input type="text" name="usuario" placeholder="User" />
-								<input type="text" name="nombre" placeholder="Nombre / Apellido" />
-								<input type="text" name="correo" placeholder="Email" />
-								<input type="password" name="password" placeholder="Password" />
-								<input type="password" name="password2" placeholder="Confirm Password" />
-							</div>
-							<div class="4u 12u$(xsmall)">
-							</div>
-							<div class="12u$" align="center">
-								<input type="submit" name="enviar" value="Register" class="alt" />
-							</div>
-						</div>
-					</form>
+						</form>
 					<p></p>
 				</div>
 			</div>

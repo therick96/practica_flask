@@ -1,21 +1,32 @@
 # -*- coding: utf-8 -*-
 
 import forms
+from metodos import sesion #Para validar si esta la sesion abierta
 
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, session, redirect, url_for
+from flask import session, redirect, url_for #Para sesiones
 from flask import render_template #Para renderizar template
 
+sesion = sesion()
 
 app = Flask(__name__) #Objeto
 
+app.secret_key = "Secreto"
+
+
 @app.route("/")
 def index():
-    cookie_personalizada = request.cookies.get('CookiePersonalizada', 'No hay Cookie') #Leer Cookie
-    print cookie_personalizada
-    return render_template("index.html", titulo="Inicio", clase_header='class="alt"')
+    user = sesion.sesion_abierta()
+    #cookie_personalizada = request.cookies.get('CookiePersonalizada', 'No hay Cookie') #Leer Cookie
+    #print cookie_personalizada
+    print user
+    return render_template("index.html", 
+        titulo="Inicio", 
+        clase_header='class="alt"', user=user)
 
 @app.route("/About", methods = ['GET', 'POST'])
 def about():
+    user = sesion.sesion_abierta()
     form_coment = forms.FormComent(request.form)
     if request.method == 'POST' and form_coment.validate():
         print (form_coment.user.data)
@@ -23,22 +34,40 @@ def about():
     response = make_response( render_template("generic.html", 
         titulo="About", 
         clase_body='class="subpage"', 
-        form=form_coment) 
+        form=form_coment,
+        user=user) 
     )
     response.set_cookie('CookiePersonalizada', "Erick") #Crea una cookie
     return response
 
 @app.route("/extras")
 def extras():
-    return render_template("elements.html", titulo="Extras", clase_body='class="subpage"')
+    user = sesion.sesion_abierta()
+    return render_template("elements.html", 
+        titulo="Extras", 
+        clase_body='class="subpage"',
+        user=user)
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    return render_template("login.html", titulo="Log In", clase_body='class="subpage"')
+    form_login = forms.login(request.form)
+    if request.method == 'POST' and form_login.validate():
+        user = session['user'] = form_login.user.data
+        #user = session['user']
+    return render_template("login.html", 
+        titulo="Log In", 
+        clase_body='class="subpage"', 
+        form=form_login) 
 
 @app.route("/SignUp")
 def signup():
-    return render_template("register.html", titulo="Sign Up", clase_body='class="subpage"')
+    form_signUp = forms.signUp(request.form)
+    return render_template("register.html", titulo="Sign Up", clase_body='class="subpage"', form=form_signUp)
+
+@app.route("/logout")
+def logout(): #Para cerrar la sesion
+    sesion.cerrar_sesion()
+    return redirect(url_for('login')) #Se coloca la funcion, no la url
 
 
 

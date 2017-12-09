@@ -9,3 +9,23 @@
         
     {% endif %}
 {% endmacro %}
+
+{% macro render_login(campo) %}
+    {{ campo(**kwargs)|safe }}
+
+    {% if campo.errors %}
+        {% for error in campo.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_signUp(campo) %}
+    {{ campo(**kwargs)|safe }}
+
+    {% if campo.errors %}
+        {% for error in campo.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
