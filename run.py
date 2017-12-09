@@ -13,16 +13,23 @@ app = Flask(__name__) #Objeto
 
 app.secret_key = "Secreto"
 
-@app.errorhandler(404)
+@app.errorhandler(404) #Para errores
 def not_found(e):
     return render_template("404.html"), 404
+
+@app.before_request
+def before_request(): #Accion que se ejecuta de primero al abrir pagina
+    print request.endpoint # Url de la peticion
+    if "user" not in session:
+        print "No"
+
 
 @app.route("/")
 def index():
     user = sesion.sesion_abierta()
     #cookie_personalizada = request.cookies.get('CookiePersonalizada', 'No hay Cookie') #Leer Cookie
     #print cookie_personalizada
-    print user
+    #print user
     return render_template("index.html", 
         titulo="Inicio", 
         clase_header='class="alt"', user=user)
