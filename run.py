@@ -7,6 +7,7 @@ from flask import Flask, request, make_response
 from flask import session, redirect, url_for #Para sesiones
 from flask import render_template #Para renderizar template
 from flask import flash
+from flask import g #Variables Globales
 
 sesion = sesion()
 app = Flask(__name__) #Objeto
@@ -19,6 +20,7 @@ def not_found(e):
 
 @app.before_request
 def before_request(): #Accion que se ejecuta de primero al abrir pagina
+    g.user = sesion.sesion_abierta()
     print request.endpoint # Url de la peticion
     if "user" not in session:
         print "No"
@@ -30,17 +32,15 @@ def after_request(response): # Accion para despues del pedido
 
 @app.route("/")
 def index():
-    user = sesion.sesion_abierta()
     #cookie_personalizada = request.cookies.get('CookiePersonalizada', 'No hay Cookie') #Leer Cookie
     #print cookie_personalizada
     #print user
     return render_template("index.html", 
         titulo="Inicio", 
-        clase_header='class="alt"', user=user)
+        clase_header='class="alt"', user=g.user)
 
 @app.route("/About", methods = ['GET', 'POST'])
 def about():
-    user = sesion.sesion_abierta()
     form_coment = forms.FormComent(request.form)
     if request.method == 'POST' and form_coment.validate():
         print (form_coment.user.data)
@@ -49,18 +49,17 @@ def about():
         titulo="About", 
         clase_body='class="subpage"', 
         form=form_coment,
-        user=user) 
+        user=g.user) 
     )
     response.set_cookie('CookiePersonalizada', "Erick") #Crea una cookie
     return response
 
 @app.route("/extras")
 def extras():
-    user = sesion.sesion_abierta()
     return render_template("elements.html", 
         titulo="Extras", 
         clase_body='class="subpage"',
-        user=user)
+        user=g.user)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
