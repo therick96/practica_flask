@@ -3,9 +3,10 @@
 import forms
 from metodos import sesion #Para validar si esta la sesion abierta
 
-from flask import Flask, request, make_response, session, redirect, url_for
+from flask import Flask, request, make_response
 from flask import session, redirect, url_for #Para sesiones
 from flask import render_template #Para renderizar template
+from flask import flash
 
 sesion = sesion()
 
@@ -53,16 +54,22 @@ def login():
     form_login = forms.login(request.form)
     if request.method == 'POST' and form_login.validate():
         user = session['user'] = form_login.user.data
-        #user = session['user']
+        mensaje_sucess = 'Hola {}'.format(user)
+        flash(mensaje_sucess)
     return render_template("login.html", 
         titulo="Log In", 
         clase_body='class="subpage"', 
         form=form_login) 
 
+
 @app.route("/SignUp")
 def signup():
     form_signUp = forms.signUp(request.form)
-    return render_template("register.html", titulo="Sign Up", clase_body='class="subpage"', form=form_signUp)
+    return render_template("register.html", 
+        titulo="Sign Up", 
+        clase_body='class="subpage"', 
+        form=form_signUp)
+
 
 @app.route("/logout")
 def logout(): #Para cerrar la sesion

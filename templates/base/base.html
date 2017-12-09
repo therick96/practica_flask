@@ -12,9 +12,18 @@
         <link rel="stylesheet" href="static/css/main.css" />
     </head>
     <body {{ clase_body }}>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for mensaje in messages %}
+                    <div class="alert alert-success">
+                        {{ mensaje }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <!-- Header -->
             <header id="header" {{ clase_header }}>
-                <div class="logo"><a href="index.html">Pagina de Prueba</span></a></div>
+                <div class="logo"><a href="/">Pagina de Prueba</span></a></div>
                 <a href="#menu">Menu</a>
             </header>
 
@@ -34,6 +43,8 @@
                     {% endif %}
                 </ul>
             </nav>
+
+
 
         {% block content%}
         <!-- Banner -->
