@@ -23,6 +23,10 @@ def before_request(): #Accion que se ejecuta de primero al abrir pagina
     if "user" not in session:
         print "No"
 
+@app.after_request
+def after_request(response): # Accion para despues del pedido
+    return response #Siempre retorna response
+
 
 @app.route("/")
 def index():
