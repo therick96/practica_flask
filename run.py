@@ -2,6 +2,8 @@
 
 import forms
 from metodos import sesion #Para validar si esta la sesion abierta
+from config import Developer_config
+from models import User, db
 
 from flask import Flask, request, make_response
 from flask import session, redirect, url_for #Para sesiones
@@ -11,8 +13,8 @@ from flask import g #Variables Globales
 
 sesion = sesion()
 app = Flask(__name__) #Objeto
+app.config.from_object(Developer_config)
 
-app.secret_key = "Secreto"
 
 @app.errorhandler(404) #Para errores
 def not_found(e):
@@ -89,5 +91,9 @@ def logout(): #Para cerrar la sesion
     return redirect(url_for('login')) #Se coloca la funcion, no la url
 
 
+if __name__ == '__main__':
+    db.init_app(app) #Configura app al iniciarse
 
-app.run(debug=True, port=8001) #Ejecuta el servidor, puerto default: 5000
+    with app.app_context(): #Para sincronizar la base de datos
+        db.create_all() #Crea tablas
+    app.run(port=8001) #Ejecuta el servidor, puerto default: 5000
