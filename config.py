@@ -10,3 +10,4 @@ class Developer_config(config):
     #SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/Prueba_flask'
     #ALTER USER db_username PASSWORD 'new_password'; para psql
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/prueba_flask'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
