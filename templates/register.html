@@ -31,6 +31,13 @@
 									{{ render_signUp(form.email, placeholder="Email") }}
 									{{ render_signUp(form.password, placeholder="Password") }}
 									{{ render_signUp(form.password_repetir, placeholder="Confirm Password") }}
+										{% with messages = get_flashed_messages() %}
+							                {% if messages %}
+							                    {% for mensaje in messages %}
+							                            {{ mensaje }}
+							                    {% endfor %}
+							                {% endif %}
+							            {% endwith %}
 								</div>
 								<div class="4u 12u$(xsmall)">
 								</div>

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 import forms
 from metodos import sesion #Para validar si esta la sesion abierta
