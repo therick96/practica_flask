@@ -76,9 +76,22 @@ def login():
         form=form_login) 
 
 
-@app.route("/SignUp")
+@app.route("/SignUp", methods=['POST','GET'])
 def signup():
     form_signUp = forms.signUp(request.form)
+    if request.method == 'POST' and form_signUp.validate():
+        if form_signUp.password.data == form_signUp.password_repetir.data:
+            user = User(username = form_signUp.user.data,
+                email = form_signUp.email.data,
+                password = form_signUp.password.data)
+
+            db.session.add(user)
+            db.session.commit()
+
+            flash("Registro Exitoso")
+        else:
+            flash("Contraseñas Invalidas")
+
     return render_template("register.html", 
         titulo="Sign Up", 
         clase_body='class="subpage"', 
