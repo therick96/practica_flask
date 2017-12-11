@@ -35,17 +35,6 @@
                 </ul>
             </nav>
 
-
-
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for mensaje in messages %}
-                        <div class="alert alert-success">
-                            {{ mensaje }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
         {% block content%}
         <!-- Banner -->
             <section class="banner full">

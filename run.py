@@ -27,8 +27,8 @@ def not_found(e):
 def before_request(): #Accion que se ejecuta de primero al abrir pagina
     g.user = sesion.sesion_abierta()
     print request.endpoint # Url de la peticion
-    if "user" not in session:
-        print "No"
+    if "user" in session and request.endpoint in ['login','SignUp']:
+        return redirect(url_for('index'))
 
 @app.after_request
 def after_request(response): # Accion para despues del pedido
@@ -70,9 +70,20 @@ def extras():
 def login():
     form_login = forms.login(request.form)
     if request.method == 'POST' and form_login.validate():
-        user = session['user'] = form_login.user.data
-        mensaje_sucess = 'Hola {}'.format(user)
-        flash(mensaje_sucess)
+        mensaje_sucess = None
+
+        username = form_login.user.data
+        password = form_login.password.data
+
+        user = User.query.filter_by(username = username).first()
+        if user and user.verify_password(password):
+            mensaje_sucess = 'Hola {}'.format(user)
+            session['user'] = username
+            return redirect(url_for("index"))
+        else:
+            mensaje_sucess = 'Usuario o Contraseña no validos'
+            flash(mensaje_sucess)
+
     return render_template("login.html", 
         titulo="Log In", 
         clase_body='class="subpage"', 

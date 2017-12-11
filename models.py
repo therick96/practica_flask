@@ -1,12 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 db = SQLAlchemy()
 
 class User(db.Model):
     
-    __tablename__ = "usuarios"
+    __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(50), unique=True)
@@ -19,5 +19,9 @@ class User(db.Model):
         self.email = email
         self.password = self.__create_password(password)
 
-    def __create_password(self, password):
+    def __create_password(self, password): #Encripta Password
         return generate_password_hash(password)
+
+    def verify_password(self, password):
+        pass
+        return check_password_hash(self.password, password)
