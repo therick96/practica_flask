@@ -94,6 +94,6 @@ def logout(): #Para cerrar la sesion
 if __name__ == '__main__':
     db.init_app(app) #Configura app al iniciarse
 
-    #with app.app_context(): #Para sincronizar la base de datos
-    #    db.create_all() #Crea tablas
+    with app.app_context(): #Para sincronizar la base de datos
+        db.create_all() #Crea tablas
     app.run(port=8001) #Ejecuta el servidor, puerto default: 5000
