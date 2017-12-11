@@ -8,4 +8,4 @@ class User(db.Model):
     username = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(40), unique=True)
     password = db.Column(db.String(66))
-    create_date = db.Column(db.Datetime, default=datetime.now())
+    create_date = db.Column(db.DateTime, default = datetime.now())
