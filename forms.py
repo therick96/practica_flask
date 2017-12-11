@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, TextField, HiddenField
+from wtforms import StringField, TextField, HiddenField, PasswordField
 from wtforms.fields.html5 import EmailField
 
 from wtforms import validators
@@ -20,7 +20,7 @@ class login(Form):
     user = StringField("Usuario", [
             validators.required(message="Y el usuario?")
         ])
-    password = StringField("Password", [
+    password = PasswordField("Password", [
             validators.required(message="Y el password?")
         ])
 
@@ -35,9 +35,9 @@ class signUp(Form):
     email = EmailField("Email", [
             validators.required(message="Y el email?")
         ])
-    password = StringField("Password", [
+    password = PasswordField("Password", [
             validators.required(message="Y el password?")
         ])
-    password_repetir = StringField("Repetir Password", [
+    password_repetir = PasswordField("Repetir Password", [
             validators.required(message="Y la validacion del password?")
         ])
