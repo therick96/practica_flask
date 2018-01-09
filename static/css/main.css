@@ -28,9 +28,12 @@ body{
 .nav{
     color: rgb(0,0,0);
     text-decoration: none;
-    background-color: rgb(133,40,25);
+    /*background-color: rgb(133,40,25);*/
 }
 
+.app{
+    font-size: 50px;
+}
 
 
 
