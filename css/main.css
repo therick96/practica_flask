@@ -9,10 +9,10 @@ body{
 }
 
 .color1{
-    background-color: orange;
+    background-color: #ff5f11;
 }
 .color2{
-    background-color: cyan;
+    background-color: #11ffff;
 }
 
 .color3{
@@ -25,7 +25,11 @@ body{
 
 
 
-
+.nav{
+    color: rgb(0,0,0);
+    text-decoration: none;
+    background-color: rgb(133,40,25);
+}
 
 
 
